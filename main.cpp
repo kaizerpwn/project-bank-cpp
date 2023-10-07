@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 // >> Functions
@@ -12,11 +13,18 @@ using namespace std;
 #include "interfaces/Loan.interface.h"
 #include "interfaces/Transaction.interface.h"
 
+User currentUser;
+
+// >> Database
+#include "database/Database.h"
+
 // >> Components
 #include "components/User/Login.h"
+#include "components/User/Register.h"
+#include "components/User/Main.h"
 
 int main()
 {
-    LoginForm();
+    MainForm();
     return 0;
 }

@@ -1,8 +1,7 @@
 #ifndef WORKER_INTERFACE_H
 #define WORKER_INTERFACE_H
 
-// Include the necessary header file instead of .cpp file
-#include "User.interface.h"
+#include "User.interface.h" // Include User interface header file
 
 class Worker : public User
 {
@@ -11,7 +10,8 @@ private:
     double Pay;
 
 public:
-    Worker(string name, string surname, string jmbg, string address, string phoneNumber) : User(name, surname, jmbg, address, phoneNumber)
+    Worker(UserConstructorInterface props, string position, double pay)
+        : User(props), Position(position), Pay(pay)
     {
     }
 };

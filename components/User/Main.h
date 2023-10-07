@@ -1,15 +1,12 @@
-#ifndef LOGIN_COMPONENT_H
-#define LOGIN_COMPONENT_H
+#ifndef MAIN_COMPONENT_H
+#define MAIN_COMPONENT_H
 
 #include <iostream>
-#include <string>
 
-bool Login(string email, string password);
+#include "../../utils/colors.h"
 
-void LoginForm()
+void MainForm()
 {
-    string email;
-    string password;
 
     system("clear");
 
@@ -26,42 +23,32 @@ void LoginForm()
     printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
     printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
 
-    printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
-    std::getline(cin, email);
+    printf("" CYAN "BANKA >>" BIJELA " Dobrodosli, izaberite opciju koju zelite.\n");
+    printf("" CYAN "[1]" BIJELA " Prijavi se\n");
+    printf("" CYAN "[2]" BIJELA " Registruj se\n");
+    printf("" CYAN "[3]" BIJELA " Izlaz\n");
 
-    printf("" CYAN "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
-    std::getline(cin, password);
+    int option;
+    std::cin >> option;
 
-    if (password.length() != 0 || email.length() != 0)
+    do
     {
-        Login(email, password);
-    }
-}
-
-bool Login(string email, string password)
-{
-    User *users = GetAllUsers();
-
-    if (users == nullptr)
-        return 1;
-
-    bool found = false;
-    for (int i = 0; i < MAX_USERS; i++)
-    {
-        printf("%s", users[i].GetEmail());
-        if (users[i].GetEmail() == email && users[i].CheckPassword(password))
+        switch (option)
         {
-            currentUser = users[i];
-            return true;
+        case 1:
+            LoginForm();
+            break;
+        case 2:
+            RegisterForm();
+            break;
+        case 3:
+            exit(0);
+            break;
+
+        default:
+            break;
         }
-    }
-
-    if (!found)
-        printf("" CRVENA "[ERROR]: " BIJELA "Ne postoji racun sa takvim podacima u nasoj databazi.\n");
-
-    if (users)
-        delete[] users;
-    return false;
+    } while (option != 3);
 }
 
 #endif
