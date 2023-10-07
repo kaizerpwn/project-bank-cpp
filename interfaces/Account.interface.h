@@ -1,9 +1,6 @@
 #ifndef ACCOUNT_INTERFACE_H
 #define ACCOUNT_INTERFACE_H
 
-#include <iostream>
-using namespace std;
-
 class Account
 {
 private:

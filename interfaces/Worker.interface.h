@@ -1,9 +1,6 @@
 #ifndef WORKER_INTERFACE_H
 #define WORKER_INTERFACE_H
 
-#include <iostream>
-using namespace std;
-
 // Include the necessary header file instead of .cpp file
 #include "User.interface.h"
 
