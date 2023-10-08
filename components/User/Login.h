@@ -27,9 +27,11 @@ void LoginForm()
     printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
 
     printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
+    cin.ignore();
     std::getline(cin, email);
 
     printf("" CYAN "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
+    cin.ignore();
     std::getline(cin, password);
 
     if (password.length() != 0 || email.length() != 0)
@@ -48,7 +50,7 @@ bool Login(string email, string password)
     bool found = false;
     for (int i = 0; i < MAX_USERS; i++)
     {
-        printf("%s", users[i].GetEmail());
+        std::cout << users[i].GetEmail();
         if (users[i].GetEmail() == email && users[i].CheckPassword(password))
         {
             currentUser = users[i];

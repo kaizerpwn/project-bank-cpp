@@ -73,7 +73,7 @@ void RegisterForm()
     }
     else
     {
-        printf("%s", response.Message);
+        std::cout << "" CRVENA "[ERROR]: " BIJELA "" << response.Message;
     }
 }
 
