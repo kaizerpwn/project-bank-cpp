@@ -3,60 +3,57 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "../utils/colors.h"
 #include "../interfaces/User.interface.h"
 
 #define MAX_USERS (100)
 
-std::fstream OpenDatabase(const std::string &db, std::ios_base::openmode mode)
-{
-    char databaseName[64];
-    sprintf(databaseName, "database/data/%s.dat", db.c_str());
-    std::fstream database(databaseName, mode);
-    return database;
-}
-
 // >> Function to save all users in database
-void SaveUsers(User *users)
+void SaveUsers(const std::vector<User> &users)
 {
-    std::fstream database = OpenDatabase("users", std::ios::binary | std::ios::out);
+    std::ofstream database("database/data/users.dat", std::ios::binary | std::ios::out | std::ios::trunc);
 
     if (!database.is_open())
     {
-        std::ofstream createFile("database/data/users.dat", std::ios::binary);
-        createFile.close();
-        database = OpenDatabase("users", std::ios::binary | std::ios::out);
-    }
-    else
-    {
-        database.close();
-        std::ofstream clearFile("database/data/users.dat", std::ios::binary | std::ios::trunc);
-        clearFile.close();
-        database = OpenDatabase("users", std::ios::binary | std::ios::out);
+        std::cerr << "Error: Unable to open file for writing." << std::endl;
+        return;
     }
 
-    if (database.is_open())
+    for (const auto &user : users)
     {
-        size_t dataSize = sizeof(User) * MAX_USERS;
-        database.write(reinterpret_cast<char *>(users), dataSize);
-
-        database.close();
+        user.Serialize(database);
     }
+
+    database.close();
 }
 
 // >> Function to get all users from database
-User *GetAllUsers()
+std::vector<User> GetAllUsers()
 {
-    User *users = new User[MAX_USERS];
+    std::vector<User> users;
 
-    std::fstream database = OpenDatabase("users", std::ios::binary | std::ios::in);
-    if (database)
+    std::ifstream database("database/data/users.dat", std::ios::binary | std::ios::in);
+
+    if (!database.is_open())
     {
-        database.read(reinterpret_cast<char *>(users), sizeof(User) * MAX_USERS);
-        database.close();
+        std::cerr << "Error: Unable to open file for reading." << std::endl;
+        return users;
     }
 
+    User user;
+    while (true)
+    {
+        user.Deserialize(database);
+        if (!database)
+        {
+            break;
+        }
+        users.push_back(user);
+    }
+
+    database.close();
     return users;
 }
 
@@ -71,59 +68,33 @@ CreateNewUserResponse CreateNewUser(UserConstructorInterface *userData)
 {
     User newUser(*userData);
     CreateNewUserResponse response;
-    User *users = new User[MAX_USERS];
-
-    std::fstream database = OpenDatabase("users", std::ios::binary | std::ios::in);
-    if (database)
-    {
-        database.read(reinterpret_cast<char *>(users), sizeof(User) * MAX_USERS);
-    }
+    std::vector<User> users = GetAllUsers();
 
     // >> Check if user exists in database
-    bool found = false;
-    for (int i = 0; i < MAX_USERS; i++)
+    for (const User &user : users)
     {
-        if (users[i].GetEmail() == userData->email)
+        if (user.GetEmail() == userData->email)
         {
-            found = true;
-            database.close();
             response.Status = false;
             response.Message = "" CRVENA "[ERROR]: " BIJELA "Vec postoji registrovani korisnik sa takvim emailom.\n";
             return response;
         }
     }
 
-    // >> If user doesn't exist in database register him
-    if (!found)
+    // >> Check if limit of users is exceeded
+    if (users.size() >= MAX_USERS)
     {
-        // >> Check if limit of users is exceeded
-        if (sizeof(users) / sizeof(users[0]) >= MAX_USERS)
-        {
-            database.close();
-            response.Status = false;
-            response.Message = "" CRVENA "[ERROR]: " BIJELA "Prekoracen je limit korisnika u databazi.\n";
-            return response;
-        }
-
-        for (int i = 0; i < MAX_USERS; i++)
-        {
-            if (users[i].GetName() == "" || users[i].GetName() == "undefined")
-            {
-                currentUser = newUser;
-
-                SaveUsers(users);
-                database.close();
-
-                if (users)
-                    delete[] users;
-                response.Status = true;
-                return response;
-            }
-        }
+        response.Status = false;
+        response.Message = "" CRVENA "[ERROR]: " BIJELA "Prekoracen je limit korisnika u databazi.\n";
+        return response;
     }
 
-    if (users)
-        delete[] users;
+    // >> Add the new user
+    users.push_back(newUser);
+    SaveUsers(users);
+
+    currentUser = newUser;
+    response.Status = true;
     return response;
 }
 

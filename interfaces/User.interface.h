@@ -1,6 +1,8 @@
 #ifndef USER_INTERFACE_H
 #define USER_INTERFACE_H
 
+#include <fstream>
+
 struct Contact
 {
     string Address;
@@ -33,14 +35,8 @@ private:
     Contact ContactInfo;
 
 public:
-    // >> Default constructor
-    User()
-    {
-        this->Name = "undefined";
-    }
-
     // >> Constructor with parameters
-    User(UserConstructorInterface props)
+    User(UserConstructorInterface props = {})
     {
         this->Name = props.name;
         this->Surname = props.surname;
@@ -58,12 +54,12 @@ public:
         return this->Name + " " + this->Surname;
     }
 
-    string GetName()
+    string GetName() const
     {
-        return this->Name;
+        return (Name.empty() || Name == "undefined") ? "undefined" : Name;
     }
 
-    string GetEmail()
+    string GetEmail() const
     {
         return this->Email;
     }
@@ -72,6 +68,36 @@ public:
     {
         return password == this->Password ? true : false;
     }
+
+    void Serialize(std::ostream &outFile) const;
+    void Deserialize(std::istream &inFile);
 };
+
+void User::Serialize(std::ostream &outFile) const
+{
+    outFile << Name << '|'
+            << Surname << '|'
+            << JMBG << '|'
+            << Email << '|'
+            << Password << '|'
+            << Gender << '|'
+            << BirthDate << '|'
+            << ContactInfo.Address << '|'
+            << ContactInfo.PhoneNumber << "|\n";
+}
+
+void User::Deserialize(std::istream &inFile)
+{
+    std::getline(inFile, Name, '|');
+    std::getline(inFile, Surname, '|');
+    std::getline(inFile, JMBG, '|');
+    std::getline(inFile, Email, '|');
+    std::getline(inFile, Password, '|');
+    std::getline(inFile, Gender, '|');
+    std::getline(inFile, BirthDate, '|');
+    std::getline(inFile, ContactInfo.Address, '|');
+    std::getline(inFile, ContactInfo.PhoneNumber, '|');
+    inFile.ignore(10000, '\n');
+}
 
 #endif

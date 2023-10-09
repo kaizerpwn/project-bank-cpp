@@ -4,12 +4,10 @@
 #include <iostream>
 #include <string>
 
-bool Login(string email, string password);
+bool Login(const string &email, const string &password);
 
 void LoginForm()
 {
-    string email;
-    string password;
 
     system("clear");
 
@@ -26,43 +24,31 @@ void LoginForm()
     printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
     printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
 
+    string email, password;
     printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
-    cin.ignore();
-    std::getline(cin, email);
-
+    std::cin >> email;
     printf("" CYAN "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
-    cin.ignore();
-    std::getline(cin, password);
-
-    if (password.length() != 0 || email.length() != 0)
-    {
-        Login(email, password);
-    }
+    std::cin >> password;
+    Login(email, password);
 }
 
-bool Login(string email, string password)
+bool Login(const string &email, const string &password)
 {
-    User *users = GetAllUsers();
+    printf("[DEBUG]: %s %s\n", email.c_str(), password.c_str());
+    std::vector<User> users = GetAllUsers();
 
-    if (users == nullptr)
-        return 1;
+    // for (int i = 0; i < users.size(); i++)
+    // {
+    //     std::cout << "User " << i + 1 << " Email: " << email2 << std::endl;
+    //     if (users[i].GetEmail() == email && users[i].CheckPassword(password))
+    //     {
+    //         cout << "Korisnik je pronadjen na indeksu : " << i << endl;
+    //         currentUser = users[i];
+    //         break; // No need to continue searching
+    //     }
+    //     std::string email2 = users[i].GetEmail();
+    // }
 
-    bool found = false;
-    for (int i = 0; i < MAX_USERS; i++)
-    {
-        std::cout << users[i].GetEmail();
-        if (users[i].GetEmail() == email && users[i].CheckPassword(password))
-        {
-            currentUser = users[i];
-            return true;
-        }
-    }
-
-    if (!found)
-        printf("" CRVENA "[ERROR]: " BIJELA "Ne postoji racun sa takvim podacima u nasoj databazi.\n");
-
-    if (users)
-        delete[] users;
     return false;
 }
 

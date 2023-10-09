@@ -31,24 +31,24 @@ void MainForm()
     int option;
     std::cin >> option;
 
-    do
+    // do
+    // {
+    switch (option)
     {
-        switch (option)
-        {
-        case 1:
-            LoginForm();
-            break;
-        case 2:
-            RegisterForm();
-            break;
-        case 3:
-            exit(0);
-            break;
+    case 1:
+        LoginForm();
+        break;
+    case 2:
+        RegisterForm();
+        break;
+    case 3:
+        exit(0);
+        break;
 
-        default:
-            break;
-        }
-    } while (option != 3);
+    default:
+        break;
+    }
+    // } while (option != 3);
 }
 
 #endif
