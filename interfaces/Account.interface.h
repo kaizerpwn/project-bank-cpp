@@ -11,6 +11,26 @@ public:
     Account()
     {
     }
+
+    void SetAccountNumber(string accountNumber)
+    {
+        this->AccountNumber = accountNumber;
+    }
+
+    void SetAccountBalance(double balance)
+    {
+        this->Balance = balance;
+    }
+
+    string GetAccountNumber() const
+    {
+        return this->AccountNumber;
+    }
+
+    double GetAccountBalance() const
+    {
+        return this->Balance;
+    }
 };
 
 class CurrentAccount : public Account

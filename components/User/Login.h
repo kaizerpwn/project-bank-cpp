@@ -37,17 +37,15 @@ bool Login(const string &email, const string &password)
     printf("[DEBUG]: %s %s\n", email.c_str(), password.c_str());
     std::vector<User> users = GetAllUsers();
 
-    // for (int i = 0; i < users.size(); i++)
-    // {
-    //     std::cout << "User " << i + 1 << " Email: " << email2 << std::endl;
-    //     if (users[i].GetEmail() == email && users[i].CheckPassword(password))
-    //     {
-    //         cout << "Korisnik je pronadjen na indeksu : " << i << endl;
-    //         currentUser = users[i];
-    //         break; // No need to continue searching
-    //     }
-    //     std::string email2 = users[i].GetEmail();
-    // }
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (users[i].GetEmail() == email && users[i].CheckPassword(password))
+        {
+            cout << "Korisnik je pronadjen na indeksu : " << i << endl;
+            currentUser = users[i];
+            break;
+        }
+    }
 
     return false;
 }

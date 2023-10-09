@@ -65,6 +65,7 @@ void RegisterForm()
     userData.jmbg = jmbg;
     userData.address = address;
     userData.phoneNumber = phoneNumber;
+    userData.accountNumber = "15252151";
 
     CreateNewUserResponse response = CreateNewUser(&userData);
     if (response.Status == true)

@@ -20,6 +20,7 @@ struct UserConstructorInterface
     string gender;
     string birthDate;
     string password;
+    string accountNumber;
 };
 
 class User
@@ -33,6 +34,7 @@ private:
     string Gender;
     string BirthDate;
     Contact ContactInfo;
+    Account BankAccount;
 
 public:
     // >> Constructor with parameters
@@ -47,6 +49,9 @@ public:
         this->Password = props.password;
         this->BirthDate = props.birthDate;
         this->Gender = props.gender;
+
+        this->BankAccount.SetAccountNumber(props.accountNumber);
+        this->BankAccount.SetAccountBalance(0.0);
     }
 
     string GetFullName()
@@ -83,7 +88,9 @@ void User::Serialize(std::ostream &outFile) const
             << Gender << '|'
             << BirthDate << '|'
             << ContactInfo.Address << '|'
-            << ContactInfo.PhoneNumber << "|\n";
+            << ContactInfo.PhoneNumber << "|"
+            << BankAccount.GetAccountNumber() << "|"
+            << BankAccount.GetAccountBalance() << "|\n";
 }
 
 void User::Deserialize(std::istream &inFile)
@@ -97,6 +104,21 @@ void User::Deserialize(std::istream &inFile)
     std::getline(inFile, BirthDate, '|');
     std::getline(inFile, ContactInfo.Address, '|');
     std::getline(inFile, ContactInfo.PhoneNumber, '|');
+
+    std::string accountNumber, accountBalance;
+    std::getline(inFile, accountNumber, '|');
+    std::getline(inFile, accountBalance, '|');
+
+    try
+    {
+        BankAccount.SetAccountNumber(accountNumber);
+        BankAccount.SetAccountBalance(std::stod(accountBalance));
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << "Error: Invalid account balance format\n";
+    }
+
     inFile.ignore(10000, '\n');
 }
 
