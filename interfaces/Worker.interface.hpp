@@ -1,7 +1,7 @@
 #ifndef WORKER_INTERFACE_H
 #define WORKER_INTERFACE_H
 
-#include "User.interface.h" // Include User interface header file
+#include "User.interface.hpp"
 
 class Worker : public User
 {

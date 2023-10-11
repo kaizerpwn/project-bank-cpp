@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../../utils/colors.h"
+#include "../../utils/colors.hpp"
 
 void MainForm()
 {

@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "../../utils/colors.h"
-#include "../../interfaces/User.interface.h"
-#include "../../database/Database.h"
+#include "../../utils/colors.hpp"
+#include "../../interfaces/User.interface.hpp"
+#include "../../database/Database.hpp"
 
 void RegisterForm()
 {

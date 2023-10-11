@@ -3,6 +3,8 @@
 
 #include <fstream>
 
+using std::string;
+
 struct Contact
 {
     string Address;

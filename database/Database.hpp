@@ -5,8 +5,8 @@
 #include <fstream>
 #include <vector>
 
-#include "../utils/colors.h"
-#include "../interfaces/User.interface.h"
+#include "../utils/colors.hpp"
+#include "../interfaces/User.interface.hpp"
 
 #define MAX_USERS (100)
 

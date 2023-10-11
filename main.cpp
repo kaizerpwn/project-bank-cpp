@@ -1,27 +1,29 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
 // >> Functions
-#include "utils/colors.h"
+#include "utils/colors.hpp"
 
 // >> Classes
-#include "interfaces/Account.interface.h"
-#include "interfaces/Loan.interface.h"
-#include "interfaces/Transaction.interface.h"
-#include "interfaces/User.interface.h"
-#include "interfaces/Worker.interface.h"
+#include "interfaces/Account.interface.hpp"
+#include "interfaces/Loan.interface.hpp"
+#include "interfaces/Transaction.interface.hpp"
+#include "interfaces/User.interface.hpp"
+#include "interfaces/Worker.interface.hpp"
 
 User currentUser;
 
 // >> Database
-#include "database/Database.h"
+#include "database/Database.hpp"
 
 // >> Components
-#include "components/User/Login.h"
-#include "components/User/Register.h"
-#include "components/User/Main.h"
+#include "components/User/Login.hpp"
+#include "components/User/Register.hpp"
+#include "components/User/Main.hpp"
 
 int main()
 {
