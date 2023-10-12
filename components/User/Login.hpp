@@ -5,6 +5,7 @@
 #include <string>
 
 bool Login(const string &email, const string &password);
+void UserDashboardForm();
 
 void LoginForm()
 {
@@ -34,15 +35,14 @@ void LoginForm()
 
 bool Login(const string &email, const string &password)
 {
-    printf("[DEBUG]: %s %s\n", email.c_str(), password.c_str());
     std::vector<User> users = GetAllUsers();
 
     for (int i = 0; i < users.size(); i++)
     {
         if (users[i].GetEmail() == email && users[i].CheckPassword(password))
         {
-            cout << "Korisnik je pronadjen na indeksu : " << i << endl;
             currentUser = users[i];
+            UserDashboardForm();
             break;
         }
     }

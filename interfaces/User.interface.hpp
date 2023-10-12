@@ -39,7 +39,6 @@ private:
     Account BankAccount;
 
 public:
-    // >> Constructor with parameters
     User(UserConstructorInterface props = {})
     {
         this->Name = props.name;
@@ -78,6 +77,16 @@ public:
 
     void Serialize(std::ostream &outFile) const;
     void Deserialize(std::istream &inFile);
+
+    string GetAccountNumber() const
+    {
+        return BankAccount.GetAccountNumber();
+    }
+
+    double GetAccountBalance() const
+    {
+        return BankAccount.GetAccountBalance();
+    }
 };
 
 void User::Serialize(std::ostream &outFile) const
@@ -118,7 +127,6 @@ void User::Deserialize(std::istream &inFile)
     }
     catch (const std::invalid_argument &e)
     {
-        std::cerr << "Error: Invalid account balance format\n";
     }
 
     inFile.ignore(10000, '\n');

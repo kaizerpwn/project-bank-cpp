@@ -24,6 +24,7 @@ User currentUser;
 #include "components/User/Login.hpp"
 #include "components/User/Register.hpp"
 #include "components/User/Main.hpp"
+#include "components/User/Dashboard.hpp"
 
 int main()
 {
