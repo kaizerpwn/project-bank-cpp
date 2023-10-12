@@ -17,7 +17,7 @@ void SaveUsers(const std::vector<User> &users)
 
     if (!database.is_open())
     {
-        std::cerr << "Error: Unable to open file for writing." << std::endl;
+        std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
         return;
     }
 
@@ -38,7 +38,7 @@ std::vector<User> GetAllUsers()
 
     if (!database.is_open())
     {
-        std::cerr << "Error: Unable to open file for reading." << std::endl;
+        std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
         return users;
     }
 

@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
 
+using std::cerr;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 
 // >> Functions
 #include "utils/colors.hpp"

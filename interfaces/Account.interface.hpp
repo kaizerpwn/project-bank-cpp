@@ -1,8 +1,6 @@
 #ifndef ACCOUNT_INTERFACE_H
 #define ACCOUNT_INTERFACE_H
 
-using std::string;
-
 class Account
 {
 private:
