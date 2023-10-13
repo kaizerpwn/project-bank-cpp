@@ -9,7 +9,7 @@ struct Contact
     string PhoneNumber;
 };
 
-struct UserConstructorInterface
+struct IUser
 {
     string name;
     string surname;
@@ -37,7 +37,7 @@ private:
     Account BankAccount;
 
 public:
-    User(UserConstructorInterface props = {})
+    User(IUser props = {})
     {
         this->Name = props.name;
         this->Surname = props.surname;

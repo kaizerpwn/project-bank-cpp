@@ -64,7 +64,7 @@ struct CreateNewUserResponse
 };
 
 // >> Function to create new user
-CreateNewUserResponse CreateNewUser(UserConstructorInterface *userData)
+CreateNewUserResponse CreateNewUser(IUser *userData)
 {
     User newUser(*userData);
     CreateNewUserResponse response;

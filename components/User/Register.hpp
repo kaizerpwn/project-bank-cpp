@@ -54,7 +54,7 @@ void RegisterForm()
     printf("" CYAN "BANKA >>" BIJELA " Unesite Vas trenutni kontakt broj.\n");
     std::cin >> phoneNumber;
 
-    UserConstructorInterface userData;
+    IUser userData;
 
     userData.name = name;
     userData.surname = surname;

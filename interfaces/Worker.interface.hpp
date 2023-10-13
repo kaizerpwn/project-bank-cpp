@@ -10,7 +10,7 @@ private:
     double Salary;
 
 public:
-    Worker(UserConstructorInterface props, string position, double salary)
+    Worker(IUser props, string position, double salary)
         : User(props), Position(position), Salary(salary)
     {
         this->Position = position;
