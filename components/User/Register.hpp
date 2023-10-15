@@ -6,6 +6,7 @@
 #include "../../utils/colors.hpp"
 #include "../../interfaces/User.interface.hpp"
 #include "../../database/Database.hpp"
+#include "../../utils/functions.hpp"
 
 void RegisterForm()
 {
@@ -65,7 +66,8 @@ void RegisterForm()
     userData.jmbg = jmbg;
     userData.address = address;
     userData.phoneNumber = phoneNumber;
-    userData.accountNumber = "15252151";
+    userData.accountNumber = generateRandomVisaCardNumber();
+    userData.savingsAccountNumber = generateRandomMastercardNumber();
 
     CreateNewUserResponse response = CreateNewUser(&userData);
     if (response.Status == true)

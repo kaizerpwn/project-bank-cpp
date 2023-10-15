@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using std::cerr;
 using std::cin;
@@ -30,6 +32,7 @@ User currentUser;
 
 int main()
 {
+    srand(time(0));
     MainForm();
     return 0;
 }

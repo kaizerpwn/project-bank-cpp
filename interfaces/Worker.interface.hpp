@@ -3,15 +3,20 @@
 
 #include "User.interface.hpp"
 
-class Worker : public User
+class Worker
 {
 private:
     string Position;
     double Salary;
 
 public:
-    Worker(IUser props, string position, double salary)
-        : User(props), Position(position), Salary(salary)
+    Worker()
+    {
+        this->Position = "Unemployed";
+        this->Salary = 0;
+    }
+
+    Worker(string position, double salary)
     {
         this->Position = position;
         this->Salary = salary;
@@ -27,12 +32,12 @@ public:
         this->Salary = salary;
     }
 
-    string GetWorkerPosition()
+    string GetWorkerPosition() const
     {
         return this->Position;
     }
 
-    double GetWorkerSalary()
+    double GetWorkerSalary() const
     {
         return this->Salary;
     }

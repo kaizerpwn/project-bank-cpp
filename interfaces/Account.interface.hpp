@@ -10,6 +10,8 @@ private:
 public:
     Account()
     {
+        this->AccountNumber = "N/A";
+        this->Balance = 0;
     }
 
     void SetAccountNumber(string accountNumber)
@@ -40,6 +42,17 @@ class CurrentAccount : public Account
 public:
     CurrentAccount()
     {
+        this->Limit = 10000;
+    }
+
+    void SetAccountLimit(double limit)
+    {
+        this->Limit = limit;
+    }
+
+    double GetAccountLimit() const
+    {
+        return this->Limit;
     }
 };
 
@@ -50,6 +63,17 @@ class SavingsAccount : public Account
 public:
     SavingsAccount()
     {
+        this->InterestRate = 10;
+    }
+
+    void SetInterestRate(double interestRate)
+    {
+        this->InterestRate = interestRate;
+    }
+
+    double GetInterestRate() const
+    {
+        return this->InterestRate;
     }
 };
 

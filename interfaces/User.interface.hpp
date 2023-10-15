@@ -2,6 +2,7 @@
 #define USER_INTERFACE_H
 
 #include <fstream>
+#include "Worker.interface.hpp"
 
 struct Contact
 {
@@ -21,6 +22,7 @@ struct IUser
     string birthDate;
     string password;
     string accountNumber;
+    string savingsAccountNumber;
 };
 
 class User
@@ -34,7 +36,9 @@ private:
     string Gender;
     string BirthDate;
     Contact ContactInfo;
-    Account BankAccount;
+    CurrentAccount BankAccount;
+    SavingsAccount BankSavingsAccount;
+    Worker WorkData;
 
 public:
     User(IUser props = {})
@@ -51,6 +55,12 @@ public:
 
         this->BankAccount.SetAccountNumber(props.accountNumber);
         this->BankAccount.SetAccountBalance(0.0);
+
+        this->BankSavingsAccount.SetAccountNumber(props.savingsAccountNumber);
+        this->BankSavingsAccount.SetAccountBalance(0.0);
+
+        this->WorkData.SetWorkerPosition("Unemployed");
+        this->WorkData.SetWorkerSalary(0);
     }
 
     string GetFullName()
@@ -99,7 +109,11 @@ void User::Serialize(std::ostream &outFile) const
             << ContactInfo.Address << '|'
             << ContactInfo.PhoneNumber << "|"
             << BankAccount.GetAccountNumber() << "|"
-            << BankAccount.GetAccountBalance() << "|\n";
+            << BankAccount.GetAccountBalance() << "|"
+            << BankSavingsAccount.GetAccountNumber() << "|"
+            << BankSavingsAccount.GetAccountBalance() << "|"
+            << WorkData.GetWorkerPosition() << "|"
+            << WorkData.GetWorkerSalary() << "|\n";
 }
 
 void User::Deserialize(std::istream &inFile)
@@ -114,14 +128,26 @@ void User::Deserialize(std::istream &inFile)
     std::getline(inFile, ContactInfo.Address, '|');
     std::getline(inFile, ContactInfo.PhoneNumber, '|');
 
-    std::string accountNumber, accountBalance;
+    std::string accountNumber, accountBalance, position, salary, savingsAccountNumber, savingsAccountBalance;
     std::getline(inFile, accountNumber, '|');
     std::getline(inFile, accountBalance, '|');
+
+    std::getline(inFile, savingsAccountNumber, '|');
+    std::getline(inFile, savingsAccountBalance, '|');
+
+    std::getline(inFile, position, '|');
+    std::getline(inFile, salary, '|');
 
     try
     {
         BankAccount.SetAccountNumber(accountNumber);
         BankAccount.SetAccountBalance(std::stod(accountBalance));
+
+        BankSavingsAccount.SetAccountNumber(savingsAccountNumber);
+        BankSavingsAccount.SetAccountBalance(std::stod(savingsAccountBalance));
+
+        WorkData.SetWorkerPosition(position);
+        WorkData.SetWorkerSalary(std::stod(salary));
     }
     catch (const std::invalid_argument &e)
     {
