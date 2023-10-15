@@ -25,6 +25,7 @@ User currentUser;
 #include "database/Database.hpp"
 
 // >> Components
+#include "components/Header.hpp"
 #include "components/User/Login.hpp"
 #include "components/User/Register.hpp"
 #include "components/User/Main.hpp"

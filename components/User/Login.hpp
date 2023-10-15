@@ -11,24 +11,12 @@ void LoginForm()
 {
 
     system("clear");
-
-    printf("" CYAN " __                         __                                       \n");
-    printf("" CYAN "|  \\                       |  \\                                      \n");
-    printf("" CYAN "| ▓▓____   ______  _______ | ▓▓   __       ______   ______   ______  \n");
-    printf("" CYAN "| ▓▓    \\ |      \\|       \\| ▓▓  /  \\     |      \\ /      \\ /      \\ \n");
-    printf("" CYAN "| ▓▓▓▓▓▓▓\\ \\▓▓▓▓▓▓\\ ▓▓▓▓▓▓▓\\ ▓▓_/  ▓▓      \\▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\\n");
-    printf("" CYAN "| ▓▓  | ▓▓/      ▓▓ ▓▓  | ▓▓ ▓▓   ▓▓      /      ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓\n");
-    printf("" CYAN "| ▓▓__/ ▓▓  ▓▓▓▓▓▓▓ ▓▓  | ▓▓ ▓▓▓▓▓▓\\     |  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓\n");
-    printf("" CYAN "| ▓▓    ▓▓\\▓▓    ▓▓ ▓▓  | ▓▓ ▓▓  \\▓▓\\     \\▓▓    ▓▓ ▓▓    ▓▓ ▓▓    ▓▓\n");
-    printf("" CYAN "\\▓▓▓▓▓▓▓  \\ ▓▓▓▓▓▓▓\\▓▓   \\▓▓\\▓▓   \\▓▓      \\▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓| ▓▓▓▓▓▓▓ \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
+    ShowHeader();
 
     string email, password;
-    printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
     std::cin >> email;
-    printf("" CYAN "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
     std::cin >> password;
     Login(email, password);
 }

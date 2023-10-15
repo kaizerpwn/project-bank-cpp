@@ -9,24 +9,12 @@ void MainForm()
 {
 
     system("clear");
+    ShowHeader();
 
-    printf("" CYAN " __                         __                                       \n");
-    printf("" CYAN "|  \\                       |  \\                                      \n");
-    printf("" CYAN "| ▓▓____   ______  _______ | ▓▓   __       ______   ______   ______  \n");
-    printf("" CYAN "| ▓▓    \\ |      \\|       \\| ▓▓  /  \\     |      \\ /      \\ /      \\ \n");
-    printf("" CYAN "| ▓▓▓▓▓▓▓\\ \\▓▓▓▓▓▓\\ ▓▓▓▓▓▓▓\\ ▓▓_/  ▓▓      \\▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\\n");
-    printf("" CYAN "| ▓▓  | ▓▓/      ▓▓ ▓▓  | ▓▓ ▓▓   ▓▓      /      ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓\n");
-    printf("" CYAN "| ▓▓__/ ▓▓  ▓▓▓▓▓▓▓ ▓▓  | ▓▓ ▓▓▓▓▓▓\\     |  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓\n");
-    printf("" CYAN "| ▓▓    ▓▓\\▓▓    ▓▓ ▓▓  | ▓▓ ▓▓  \\▓▓\\     \\▓▓    ▓▓ ▓▓    ▓▓ ▓▓    ▓▓\n");
-    printf("" CYAN "\\▓▓▓▓▓▓▓  \\ ▓▓▓▓▓▓▓\\▓▓   \\▓▓\\▓▓   \\▓▓      \\▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓| ▓▓▓▓▓▓▓ \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
-
-    printf("" CYAN "BANKA >>" BIJELA " Dobrodosli, izaberite opciju koju zelite.\n");
-    printf("" CYAN "[1]" BIJELA " Prijavi se\n");
-    printf("" CYAN "[2]" BIJELA " Registruj se\n");
-    printf("" CYAN "[3]" BIJELA " Izlaz\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Dobrodosli, izaberite opciju koju zelite.\n");
+    printf("" CRVENA "[1]" BIJELA " Prijavi se\n");
+    printf("" CRVENA "[2]" BIJELA " Registruj se\n");
+    printf("" CRVENA "[3]" BIJELA " Izlaz\n");
 
     int option;
     std::cin >> option;

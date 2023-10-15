@@ -21,38 +21,26 @@ void RegisterForm()
         phoneNumber;
 
     system("clear");
+    ShowHeader();
 
-    printf("" CYAN " __                         __                                       \n");
-    printf("" CYAN "|  \\                       |  \\                                      \n");
-    printf("" CYAN "| ▓▓____   ______  _______ | ▓▓   __       ______   ______   ______  \n");
-    printf("" CYAN "| ▓▓    \\ |      \\|       \\| ▓▓  /  \\     |      \\ /      \\ /      \\ \n");
-    printf("" CYAN "| ▓▓▓▓▓▓▓\\ \\▓▓▓▓▓▓\\ ▓▓▓▓▓▓▓\\ ▓▓_/  ▓▓      \\▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\\n");
-    printf("" CYAN "| ▓▓  | ▓▓/      ▓▓ ▓▓  | ▓▓ ▓▓   ▓▓      /      ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓\n");
-    printf("" CYAN "| ▓▓__/ ▓▓  ▓▓▓▓▓▓▓ ▓▓  | ▓▓ ▓▓▓▓▓▓\\     |  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓\n");
-    printf("" CYAN "| ▓▓    ▓▓\\▓▓    ▓▓ ▓▓  | ▓▓ ▓▓  \\▓▓\\     \\▓▓    ▓▓ ▓▓    ▓▓ ▓▓    ▓▓\n");
-    printf("" CYAN "\\▓▓▓▓▓▓▓  \\ ▓▓▓▓▓▓▓\\▓▓   \\▓▓\\▓▓   \\▓▓      \\▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓| ▓▓▓▓▓▓▓ \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                  | ▓▓     | ▓▓      \n");
-    printf("" CYAN "                                                   \\▓▓      \\▓▓      \n");
-
-    printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vase ime.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Molimo Vas unesite Vase ime.\n");
     std::cin >> name;
-    printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vase prezime.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Molimo Vas unesite Vase prezime.\n");
     std::cin >> surname;
-    printf("" CYAN "BANKA >>" BIJELA " Molimo Vas unesite Vas email koji zelite koristiti.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Molimo Vas unesite Vas email koji zelite koristiti.\n");
     std::cin >> email;
-    printf("" CYAN "BANKA >>" BIJELA " Sada unesite lozinku koju zelite koristiti.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Sada unesite lozinku koju zelite koristiti.\n");
     std::cin >> password;
-    printf("" CYAN "BANKA >>" BIJELA " Kojeg ste spola?.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Kojeg ste spola?.\n");
     printf("" MAGENTA "OPCIJE >>" BIJELA " musko | zensko\n");
     std::cin >> gender;
-    printf("" CYAN "BANKA >>" BIJELA " Unesite datum Vaseg rodjenja u formatu DD/MM/YYYY.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Unesite datum Vaseg rodjenja u formatu DD/MM/YYYY.\n");
     std::cin >> birthDate;
-    printf("" CYAN "BANKA >>" BIJELA " Unesite Vas JMBG.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Unesite Vas JMBG.\n");
     std::cin >> jmbg;
-    printf("" CYAN "BANKA >>" BIJELA " Unesite Vasu trenutnu lokaciju stanovanja.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Unesite Vasu trenutnu lokaciju stanovanja.\n");
     std::cin >> address;
-    printf("" CYAN "BANKA >>" BIJELA " Unesite Vas trenutni kontakt broj.\n");
+    printf("" CRVENA "BANKA >>" BIJELA " Unesite Vas trenutni kontakt broj.\n");
     std::cin >> phoneNumber;
 
     IUser userData;
