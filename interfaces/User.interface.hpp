@@ -23,6 +23,8 @@ struct IUser
     string password;
     string accountNumber;
     string savingsAccountNumber;
+    string savingsAccountCardNumber;
+    string accountCardNumber;
 };
 
 class User
@@ -54,9 +56,11 @@ public:
         this->Gender = props.gender;
 
         this->BankAccount.SetAccountNumber(props.accountNumber);
+        this->BankAccount.SetCardNumber(props.accountCardNumber);
         this->BankAccount.SetAccountBalance(0.0);
 
         this->BankSavingsAccount.SetAccountNumber(props.savingsAccountNumber);
+        this->BankSavingsAccount.SetCardNumber(props.savingsAccountCardNumber);
         this->BankSavingsAccount.SetAccountBalance(0.0);
 
         this->WorkData.SetWorkerPosition("Unemployed");
@@ -93,7 +97,7 @@ public:
 
     double GetAccountBalance()
     {
-        return BankAccount.GetAccountBalance();
+        return BankAccount.GetCardBalance();
     }
 };
 
@@ -109,9 +113,11 @@ void User::Serialize(std::ostream &outFile) const
             << ContactInfo.Address << '|'
             << ContactInfo.PhoneNumber << "|"
             << BankAccount.GetAccountNumber() << "|"
-            << BankAccount.GetAccountBalance() << "|"
+            << BankAccount.GetCardNumber() << "|"
+            << BankAccount.GetCardBalance() << "|"
             << BankSavingsAccount.GetAccountNumber() << "|"
-            << BankSavingsAccount.GetAccountBalance() << "|"
+            << BankSavingsAccount.GetCardNumber() << "|"
+            << BankSavingsAccount.GetCardBalance() << "|"
             << WorkData.GetWorkerPosition() << "|"
             << WorkData.GetWorkerSalary() << "|\n";
 }
@@ -128,11 +134,20 @@ void User::Deserialize(std::istream &inFile)
     std::getline(inFile, ContactInfo.Address, '|');
     std::getline(inFile, ContactInfo.PhoneNumber, '|');
 
-    std::string accountNumber, accountBalance, position, salary, savingsAccountNumber, savingsAccountBalance;
+    std::string accountNumber,
+        accountBalance,
+        position,
+        salary,
+        savingsAccountNumber,
+        savingsAccountBalance,
+        accountCardNumber,
+        savingsAccountCardNumber;
     std::getline(inFile, accountNumber, '|');
+    std::getline(inFile, accountCardNumber, '|');
     std::getline(inFile, accountBalance, '|');
 
     std::getline(inFile, savingsAccountNumber, '|');
+    std::getline(inFile, savingsAccountCardNumber, '|');
     std::getline(inFile, savingsAccountBalance, '|');
 
     std::getline(inFile, position, '|');
@@ -141,9 +156,11 @@ void User::Deserialize(std::istream &inFile)
     try
     {
         BankAccount.SetAccountNumber(accountNumber);
+        BankAccount.SetCardNumber(accountCardNumber);
         BankAccount.SetAccountBalance(std::stod(accountBalance));
 
         BankSavingsAccount.SetAccountNumber(savingsAccountNumber);
+        BankSavingsAccount.SetCardNumber(savingsAccountCardNumber);
         BankSavingsAccount.SetAccountBalance(std::stod(savingsAccountBalance));
 
         WorkData.SetWorkerPosition(position);

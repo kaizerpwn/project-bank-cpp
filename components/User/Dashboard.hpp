@@ -6,7 +6,9 @@
 #include <thread>
 
 #include "../../utils/colors.hpp"
+
 void CheckBalance();
+void TransferMoney();
 
 void UserDashboardForm()
 {
@@ -32,15 +34,22 @@ void UserDashboardForm()
 
         switch (option)
         {
+
         case 1:
             CheckBalance();
             break;
 
         case 2:
             break;
+
         case 3:
+            TransferMoney();
+            break;
+
+        case 7:
             MainForm();
             break;
+
         default:
             break;
         }
@@ -52,6 +61,15 @@ void CheckBalance()
 {
     std::cout
         << CRVENA "BANKA >>" BIJELA " Stanje vašeg računa iznosi " << ZUTA << currentUser.GetAccountBalance() << " KM" << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite 'ENTER' za povratak u meni... " << std::endl;
+    std::cin.get();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void TransferMoney()
+{
+    std::cout
+        << CRVENA "BANKA >>" BIJELA " Unesite broj računa na koji želite prebaciti novac " << ZUTA << currentUser.GetAccountBalance() << " KM" << std::endl;
     std::cout << CRVENA "BANKA >>" BIJELA " Stisnite 'ENTER' za povratak u meni... " << std::endl;
     std::cin.get();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

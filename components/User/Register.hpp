@@ -54,8 +54,12 @@ void RegisterForm()
     userData.jmbg = jmbg;
     userData.address = address;
     userData.phoneNumber = phoneNumber;
-    userData.accountNumber = generateRandomVisaCardNumber();
-    userData.savingsAccountNumber = generateRandomMastercardNumber();
+
+    userData.accountNumber = generateRandomIBAN();
+    userData.accountCardNumber = generateRandomVisaCardNumber();
+
+    userData.savingsAccountNumber = generateRandomIBAN();
+    userData.savingsAccountCardNumber = generateRandomMastercardNumber();
 
     CreateNewUserResponse response = CreateNewUser(&userData);
     if (response.Status == true)

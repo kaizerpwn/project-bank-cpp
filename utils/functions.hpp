@@ -3,6 +3,25 @@
 
 #include <iostream>
 
+std::string generateRandomIBAN()
+{
+    std::string iban = "BA";
+
+    for (int i = 0; i < 2; ++i)
+    {
+        int randomDigit = rand() % 10;
+        iban += std::to_string(randomDigit);
+    }
+
+    for (int i = 0; i < 14; ++i)
+    {
+        int randomDigit = rand() % 10;
+        iban += std::to_string(randomDigit);
+    }
+
+    return iban;
+}
+
 std::string generateRandomVisaCardNumber()
 {
     std::string cardNumber = "4";

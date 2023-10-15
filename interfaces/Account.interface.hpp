@@ -5,18 +5,25 @@ class Account
 {
 private:
     string AccountNumber;
+    string CardNumber;
     double Balance;
 
 public:
     Account()
     {
         this->AccountNumber = "N/A";
+        this->CardNumber = "N/A";
         this->Balance = 0;
     }
 
     void SetAccountNumber(string accountNumber)
     {
         this->AccountNumber = accountNumber;
+    }
+
+    void SetCardNumber(string cardNumber)
+    {
+        this->CardNumber = cardNumber;
     }
 
     void SetAccountBalance(double balance)
@@ -29,7 +36,12 @@ public:
         return this->AccountNumber;
     }
 
-    double GetAccountBalance() const
+    string GetCardNumber() const
+    {
+        return this->AccountNumber;
+    }
+
+    double GetCardBalance() const
     {
         return this->Balance;
     }
