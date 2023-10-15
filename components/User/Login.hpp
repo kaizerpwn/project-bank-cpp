@@ -23,7 +23,7 @@ void LoginForm()
 
 bool Login(const string &email, const string &password)
 {
-    std::vector<User> users = GetAllUsers();
+    std::vector<User> users = User::GetAllUsers();
 
     for (int i = 0; i < users.size(); i++)
     {

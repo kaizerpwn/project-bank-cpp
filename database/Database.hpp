@@ -9,54 +9,6 @@
 #include "../interfaces/User.interface.hpp"
 
 #define MAX_USERS (100)
-
-// >> Function to save all users in database
-void SaveUsers(const std::vector<User> &users)
-{
-    std::ofstream database("database/data/users.dat", std::ios::binary | std::ios::out | std::ios::trunc);
-
-    if (!database.is_open())
-    {
-        std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
-        return;
-    }
-
-    for (const auto &user : users)
-    {
-        user.Serialize(database);
-    }
-
-    database.close();
-}
-
-// >> Function to get all users from database
-std::vector<User> GetAllUsers()
-{
-    std::vector<User> users;
-
-    std::ifstream database("database/data/users.dat", std::ios::binary | std::ios::in);
-
-    if (!database.is_open())
-    {
-        std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
-        return users;
-    }
-
-    User user;
-    while (true)
-    {
-        user.Deserialize(database);
-        if (!database)
-        {
-            break;
-        }
-        users.push_back(user);
-    }
-
-    database.close();
-    return users;
-}
-
 struct CreateNewUserResponse
 {
     bool Status;
@@ -68,7 +20,7 @@ CreateNewUserResponse CreateNewUser(IUser *userData)
 {
     User newUser(*userData);
     CreateNewUserResponse response;
-    std::vector<User> users = GetAllUsers();
+    std::vector<User> users = User::GetAllUsers();
 
     // >> Check if user exists in database
     for (const User &user : users)
@@ -91,7 +43,7 @@ CreateNewUserResponse CreateNewUser(IUser *userData)
 
     // >> Add the new user
     users.push_back(newUser);
-    SaveUsers(users);
+    User::SaveUsers(users);
 
     currentUser = newUser;
     response.Status = true;
