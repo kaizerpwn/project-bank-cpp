@@ -38,7 +38,7 @@ public:
 
     string GetCardNumber() const
     {
-        return this->AccountNumber;
+        return this->CardNumber;
     }
 
     double GetCardBalance() const

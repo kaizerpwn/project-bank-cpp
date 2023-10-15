@@ -61,18 +61,22 @@ void CheckBalance()
 {
     std::cout
         << CRVENA "BANKA >>" BIJELA " Stanje vašeg računa iznosi " << ZUTA << currentUser.GetAccountBalance() << " KM" << std::endl;
-    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite 'ENTER' za povratak u meni... " << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
     std::cin.get();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void TransferMoney()
 {
-    std::cout
-        << CRVENA "BANKA >>" BIJELA " Unesite broj računa na koji želite prebaciti novac " << ZUTA << currentUser.GetAccountBalance() << " KM" << std::endl;
-    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite 'ENTER' za povratak u meni... " << std::endl;
-    std::cin.get();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << CRVENA "BANKA >>" BIJELA " Unesite broj računa na koji želite prebaciti" << ZUTA << " novac" << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+    string accountNumber;
+    std::getline(std::cin, accountNumber);
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (!accountNumber.empty())
+    {
+    }
 }
 
 #endif
