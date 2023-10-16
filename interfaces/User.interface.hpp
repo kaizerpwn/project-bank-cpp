@@ -38,6 +38,8 @@ private:
     string Gender;
     string BirthDate;
     Contact ContactInfo;
+
+public:
     CurrentAccount BankAccount;
     SavingsAccount BankSavingsAccount;
     Worker WorkData;
@@ -98,6 +100,11 @@ public:
     double GetAccountBalance()
     {
         return BankAccount.GetCardBalance();
+    }
+
+    double GetAccountLimit()
+    {
+        return BankAccount.GetAccountLimit();
     }
 
     static std::vector<User> GetAllUsers()
