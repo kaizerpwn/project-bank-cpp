@@ -3,6 +3,12 @@
 
 #include <iostream>
 
+double calculateInterestRate(double startingAmount, double interestRate, int months)
+{
+    double rate = startingAmount * (interestRate / 100) * months;
+    return rate;
+}
+
 std::string generateRandomIBAN()
 {
     std::string iban = "BA";

@@ -11,7 +11,7 @@ using std::string;
 
 // >> Classes
 #include "interfaces/Account.interface.hpp"
-#include "interfaces/Loan.interface.hpp"
+#include "interfaces/Credit.interface.hpp"
 #include "interfaces/Transaction.interface.hpp"
 #include "interfaces/User.interface.hpp"
 #include "interfaces/Worker.interface.hpp"

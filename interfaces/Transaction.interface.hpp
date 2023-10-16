@@ -103,7 +103,7 @@ public:
         database.close();
     }
 
-    static inline std::vector<Transaction> GetUsersTransactions(string accountNumber)
+    static inline std::vector<Transaction> GetUsersTransactions(string name, string accountNumber)
     {
         std::vector<Transaction> transactions;
         std::fstream database("database/data/transactions.dat", std::ios::binary | std::ios::in | std::ios::out);
@@ -124,7 +124,7 @@ public:
             {
                 break;
             }
-            if (transaction.From == accountNumber)
+            if (transaction.From == accountNumber || transaction.ReceiverFullName == name)
             {
                 transactions.push_back(transaction);
             }
