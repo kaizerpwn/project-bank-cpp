@@ -4,11 +4,13 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <iomanip>
 
 #include "../../utils/colors.hpp"
 
 void CheckBalance();
 void TransferMoney();
+void RecentTransactions();
 
 void UserDashboardForm()
 {
@@ -40,6 +42,7 @@ void UserDashboardForm()
             break;
 
         case 2:
+            RecentTransactions();
             break;
 
         case 3:
@@ -64,6 +67,50 @@ void CheckBalance()
     std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
     std::cin.get();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void RecentTransactions()
+{
+    std::vector<Transaction> transactions = Transaction::GetUsersTransactions(currentUser.GetAccountNumber());
+    if (transactions.empty())
+    {
+        std::cout
+            << CRVENA "BANKA >>" BIJELA " Vi niste imali nikakvih transakcija do sada." << std::endl;
+        std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+        std::cin.get();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    else
+    {
+        std::cout
+            << CRVENA "BANKA >>" BIJELA " Vaše nedavne transakcije su bile: " << std::endl;
+        const int columnWidth = 20;
+        std::cout << "+--------------------+--------------------+--------------------+--------------------+--------------------+---------+" << endl;
+        std::cout << std::setw(columnWidth - 1) << std::left << " ID transakcije";
+        std::cout << std::setw(columnWidth - 1) << std::right << "Primaoc";
+        std::cout << std::setw(columnWidth - 1) << std::right << "Račun";
+        std::cout << std::setw(columnWidth - 1) << std::right << "\tNovac (KM)";
+        std::cout << std::setw(columnWidth - 1) << std::right << "\t\tVrsta";
+        std::cout << std::endl;
+
+        std::cout << "+--------------------+--------------------+--------------------+--------------------+--------------------+---------+" << endl;
+
+        for (int i = 0; i < transactions.size(); i++)
+        {
+            std::cout << "|" << std::setw(columnWidth - 1) << std::left << CYAN << i + 1;
+            std::cout << ")" << std::setw(columnWidth - 1) << std::right << BIJELA << transactions[i].GetReceiverFullName();
+            std::cout << std::setw(columnWidth - 1) << std::right << transactions[i].GetReceiver();
+            std::cout << std::setw(columnWidth - 1) << std::right << CYAN << transactions[i].GetAmount();
+            std::cout << " KM" << std::setw(columnWidth - 1) << std::right << BIJELA << transactions[i].GetTransactionType();
+            std::cout << "|" << std::endl;
+        }
+
+        std::cout << "+--------------------+--------------------+--------------------+--------------------+--------------------+---------+" << endl;
+
+        std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+        std::cin.get();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 }
 
 void TransferMoney()
@@ -147,6 +194,19 @@ void TransferMoney()
                         << ZELENA "USPJEŠNA TRANSAKCIJA >>" BIJELA " Poslali ste: " << CYAN << amountToTransfer << " KM" << BIJELA << " na račun " << ZUTA << accountNumber << std::endl;
                     std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
                     User::SaveUsers(users);
+
+                    // >> Log that transaction
+                    ITransaction data;
+
+                    data.amount = std::stod(amountToTransfer);
+                    data.from = currentUser.GetAccountNumber();
+                    data.to = accountNumber;
+                    data.type = "Direktna transakcija";
+                    data.receiverFullName = users[i].GetFullName();
+                    data.senderFullName = currentUser.GetFullName();
+
+                    Transaction::CreateTransaction(&data);
+
                     std::cin.get();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
