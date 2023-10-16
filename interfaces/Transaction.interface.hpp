@@ -133,6 +133,34 @@ public:
 
         return transactions;
     }
+
+    static inline std::vector<Transaction> GetAllTransactions()
+    {
+        std::vector<Transaction> transactions;
+        std::fstream database("database/data/transactions.dat", std::ios::binary | std::ios::in | std::ios::out);
+
+        // >> If there is no file then create it
+        if (!database.is_open())
+        {
+            std::fstream database("database/data/transactions.dat", std::ios::binary | std::ios::in | std::ios::out | std::ios::trunc);
+        }
+
+        // >> Read all transactions from file and push them in vector 'transactions'
+        Transaction transaction;
+        while (true)
+        {
+            transaction.Deserialize(database);
+
+            if (!database)
+            {
+                break;
+            }
+            transactions.push_back(transaction);
+        }
+        database.close();
+
+        return transactions;
+    }
 };
 
 void Transaction::Serialize(std::ostream &outFile) const

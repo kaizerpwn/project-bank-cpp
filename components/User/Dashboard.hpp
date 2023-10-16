@@ -28,8 +28,12 @@ void UserDashboardForm()
         printf("" CRVENA "[2]" BIJELA " Prethodne transakcije\n");
         printf("" CRVENA "[3]" BIJELA " Nova transakcija\n");
         printf("" CRVENA "[4]" BIJELA " Podigni kredit\n");
-        printf("" CRVENA "[5]" BIJELA " Promijeni ratu kredita\n");
-        printf("" CRVENA "[6]" BIJELA " Odjavite se\n");
+        printf("" CRVENA "[5]" BIJELA " Odjavite se\n");
+
+        if (currentUser.WorkData.GetWorkerPosition() == "Banker")
+        {
+            printf("" CRVENA "[6]" BIJELA " Pregled svih transakcija (Samo zaposleni)\n");
+        }
 
         std::cin >> option;
 
@@ -41,7 +45,7 @@ void UserDashboardForm()
             break;
 
         case 2:
-            RecentTransactions();
+            RecentTransactions(currentUser.WorkData.GetWorkerPosition());
             break;
 
         case 3:
@@ -52,15 +56,22 @@ void UserDashboardForm()
             RaiseCredit();
             break;
 
-        case 6:
+        case 5:
             MainForm();
+            break;
+
+        case 6:
+            if (currentUser.WorkData.GetWorkerPosition() == "Banker")
+            {
+                RecentTransactions(currentUser.WorkData.GetWorkerPosition());
+            }
             break;
 
         default:
             break;
         }
 
-    } while (option != 6);
+    } while (option != 5);
 }
 
 void CheckBalance()

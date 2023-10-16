@@ -1,9 +1,19 @@
 #ifndef TRANSACTIONS_FUNCTIONS_H
 #define TRANSACTIONS_FUNCTIONS_H
 
-void RecentTransactions()
+void RecentTransactions(string position)
 {
-    std::vector<Transaction> transactions = Transaction::GetUsersTransactions(currentUser.GetFullName(), currentUser.GetAccountNumber());
+    std::vector<Transaction> transactions;
+
+    if (position == "Banker")
+    {
+        transactions = Transaction::GetAllTransactions();
+    }
+    else
+    {
+        transactions = Transaction::GetUsersTransactions(currentUser.GetFullName(), currentUser.GetAccountNumber());
+    }
+
     if (transactions.empty())
     {
         std::cout

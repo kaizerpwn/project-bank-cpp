@@ -43,6 +43,7 @@ public:
     CurrentAccount BankAccount;
     SavingsAccount BankSavingsAccount;
     Worker WorkData;
+    Credit CreditData;
 
 public:
     User(IUser props = {})
@@ -67,6 +68,10 @@ public:
 
         this->WorkData.SetWorkerPosition("Unemployed");
         this->WorkData.SetWorkerSalary(0);
+
+        this->CreditData.SetCreditAmount(0);
+        this->CreditData.SetCreditInterestRate(0);
+        this->CreditData.SetCreditMonths(0);
     }
 
     string GetFullName()
@@ -115,7 +120,6 @@ public:
 
         if (!database.is_open())
         {
-            std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
             return users;
         }
 
@@ -140,7 +144,6 @@ public:
 
         if (!database.is_open())
         {
-            std::cerr << "ERROR: Nije moguce uspostaviti konekciju sa databazom." << std::endl;
             return;
         }
 
@@ -171,7 +174,10 @@ void User::Serialize(std::ostream &outFile) const
             << BankSavingsAccount.GetCardNumber() << "|"
             << BankSavingsAccount.GetCardBalance() << "|"
             << WorkData.GetWorkerPosition() << "|"
-            << WorkData.GetWorkerSalary() << "|\n";
+            << WorkData.GetWorkerSalary() << "|"
+            << CreditData.GetCreditAmount() << "|"
+            << CreditData.GetCreditMonths() << "|"
+            << CreditData.GetCreditInterestRate() << "|\n";
 }
 
 void User::Deserialize(std::istream &inFile)
@@ -193,7 +199,10 @@ void User::Deserialize(std::istream &inFile)
         savingsAccountNumber,
         savingsAccountBalance,
         accountCardNumber,
-        savingsAccountCardNumber;
+        savingsAccountCardNumber,
+        creditAmount,
+        creditMonths,
+        creditInterestRate;
     std::getline(inFile, accountNumber, '|');
     std::getline(inFile, accountCardNumber, '|');
     std::getline(inFile, accountBalance, '|');
@@ -204,6 +213,10 @@ void User::Deserialize(std::istream &inFile)
 
     std::getline(inFile, position, '|');
     std::getline(inFile, salary, '|');
+
+    std::getline(inFile, creditAmount, '|');
+    std::getline(inFile, creditMonths, '|');
+    std::getline(inFile, creditInterestRate, '|');
 
     try
     {
@@ -217,6 +230,10 @@ void User::Deserialize(std::istream &inFile)
 
         WorkData.SetWorkerPosition(position);
         WorkData.SetWorkerSalary(std::stod(salary));
+
+        CreditData.SetCreditAmount(std::stod(creditAmount));
+        CreditData.SetCreditMonths(std::stoi(creditMonths));
+        CreditData.SetCreditInterestRate(std::stod(creditInterestRate));
     }
     catch (const std::invalid_argument &e)
     {
