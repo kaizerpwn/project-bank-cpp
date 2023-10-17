@@ -132,6 +132,26 @@ public:
         return BankAccount.GetAccountLimit();
     }
 
+    void SetEmail(string email)
+    {
+        this->Email = email;
+    }
+
+    void SetBirthDate(string birthDate)
+    {
+        this->BirthDate = birthDate;
+    }
+
+    void SetLocation(string address)
+    {
+        this->ContactInfo.Address = address;
+    }
+
+    void SetPhoneNumber(string phoneNumber)
+    {
+        this->ContactInfo.PhoneNumber = phoneNumber;
+    }
+
     static std::vector<User> GetAllUsers()
     {
         std::vector<User> users;

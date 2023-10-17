@@ -77,6 +77,13 @@ void UserDashboardForm()
             }
             break;
 
+        case 7:
+            if (currentUser.WorkData.GetWorkerPosition() == "Banker")
+            {
+                EditUser();
+            }
+            break;
+
         default:
             break;
         }
