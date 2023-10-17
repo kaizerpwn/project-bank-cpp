@@ -84,9 +84,29 @@ public:
         return (Name.empty() || Name == "undefined") ? "undefined" : Name;
     }
 
+    string GetSurname() const
+    {
+        return (Surname.empty() || Surname == "undefined") ? "undefined" : Surname;
+    }
+
     string GetEmail() const
     {
         return this->Email;
+    }
+
+    string GetGender() const
+    {
+        return this->Gender;
+    }
+
+    string GetBirthDate() const
+    {
+        return this->BirthDate;
+    }
+
+    string GetPhoneNumber() const
+    {
+        return this->ContactInfo.PhoneNumber;
     }
 
     bool CheckPassword(string password)

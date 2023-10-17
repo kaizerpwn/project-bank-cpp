@@ -9,6 +9,7 @@
 #include "../../utils/colors.hpp"
 #include "Functions/Credit.hpp"
 #include "Functions/Transactions.hpp"
+#include "Functions/Users.hpp"
 
 void CheckBalance();
 
@@ -28,12 +29,14 @@ void UserDashboardForm()
         printf("" CRVENA "[2]" BIJELA " Prethodne transakcije\n");
         printf("" CRVENA "[3]" BIJELA " Nova transakcija\n");
         printf("" CRVENA "[4]" BIJELA " Podigni kredit\n");
-        printf("" CRVENA "[5]" BIJELA " Odjavite se\n");
-
         if (currentUser.WorkData.GetWorkerPosition() == "Banker")
         {
-            printf("" CRVENA "[6]" BIJELA " Pregled svih transakcija (Samo zaposleni)\n");
+            printf("" CRVENA "[5]" BIJELA " Pregled svih transakcija (Samo zaposleni)\n");
+            printf("" CRVENA "[6]" BIJELA " Pregled svih korisnika (Samo zaposleni)\n");
+            printf("" CRVENA "[7]" BIJELA " Uredi korisnika (Samo zaposleni)\n");
+            printf("" CRVENA "[8]" BIJELA " Obriši korisnika (Samo zaposleni)\n\n");
         }
+        printf("" CRVENA "[-1]" BIJELA " Odjavite se\n");
 
         std::cin >> option;
 
@@ -45,7 +48,7 @@ void UserDashboardForm()
             break;
 
         case 2:
-            RecentTransactions(currentUser.WorkData.GetWorkerPosition());
+            RecentTransactions("N/A");
             break;
 
         case 3:
@@ -56,14 +59,21 @@ void UserDashboardForm()
             RaiseCredit();
             break;
 
-        case 5:
+        case -1:
             MainForm();
+            break;
+
+        case 5:
+            if (currentUser.WorkData.GetWorkerPosition() == "Banker")
+            {
+                RecentTransactions(currentUser.WorkData.GetWorkerPosition());
+            }
             break;
 
         case 6:
             if (currentUser.WorkData.GetWorkerPosition() == "Banker")
             {
-                RecentTransactions(currentUser.WorkData.GetWorkerPosition());
+                ShowAllUsers();
             }
             break;
 
@@ -71,7 +81,7 @@ void UserDashboardForm()
             break;
         }
 
-    } while (option != 5);
+    } while (option != -1);
 }
 
 void CheckBalance()
