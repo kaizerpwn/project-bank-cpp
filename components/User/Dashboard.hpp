@@ -84,6 +84,13 @@ void UserDashboardForm()
             }
             break;
 
+        case 8:
+            if (currentUser.WorkData.GetWorkerPosition() == "Banker")
+            {
+                DeleteUser();
+            }
+            break;
+
         default:
             break;
         }

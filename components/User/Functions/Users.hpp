@@ -201,4 +201,49 @@ void EditUser()
     }
 }
 
+void DeleteUser()
+{
+    if (IsBanker() == false)
+        return;
+
+    ViewAllUsers();
+    std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " 'ID korisnika' " << BIJELA << "kojeg želite obrisati iz databaze... " << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " '-1' " << BIJELA << "za povratak u meni... " << std::endl;
+
+    std::vector<User> users = User::GetAllUsers();
+    int id;
+    bool found = false;
+    std::cin >> id;
+
+    if (id == -1)
+    {
+        return;
+    }
+
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (i + 1 == id)
+        {
+            std::cout << CRVENA "USPJEŠNO >>" BIJELA " Obrisali ste korisnika '" << ZUTA << users[i].GetFullName() << BIJELA << "' iz databaze... " << std::endl;
+            std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+            users.erase(users.begin() + i);
+            User::SaveUsers(users);
+            found = true;
+
+            std::cin.get();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            break;
+        }
+    }
+
+    if (found == false)
+    {
+        std::cout << CRVENA "BANKA >>" BIJELA " Ne postoji korisnik sa takvim" << ZUTA << " 'ID-om' " << BIJELA << " u nasoj databazi... " << std::endl;
+        std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+
+        std::cin.get();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+}
+
 #endif
