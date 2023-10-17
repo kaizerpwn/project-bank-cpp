@@ -77,12 +77,16 @@ void EditUser()
 
     ViewAllUsers();
     std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " 'ID korisnika' " << BIJELA << "kojeg želite izmijeniti... " << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " '-1' " << BIJELA << "za povratak u meni... " << std::endl;
 
     std::vector<User> users = User::GetAllUsers();
     int id;
     bool found = false;
 
     std::cin >> id;
+
+    if (id == -1)
+        return;
 
     for (int i = 0; i < users.size(); i++)
     {

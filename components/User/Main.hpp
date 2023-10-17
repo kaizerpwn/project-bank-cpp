@@ -11,10 +11,10 @@ void MainForm()
     system("clear");
     ShowHeader();
 
-    printf("" CRVENA "BANKA >>" BIJELA " Dobrodosli, izaberite opciju koju zelite.\n");
-    printf("" CRVENA "[1]" BIJELA " Prijavi se\n");
-    printf("" CRVENA "[2]" BIJELA " Registruj se\n");
-    printf("" CRVENA "[3]" BIJELA " Izlaz\n");
+    std::cout << CRVENA << "BANKA >>" << BIJELA << " Dobrodosli, izaberite opciju koju zelite.\n";
+    std::cout << CRVENA << "[1]" << BIJELA << " Prijavi se\n";
+    std::cout << CRVENA << "[2]" << BIJELA << " Registruj se\n";
+    std::cout << CRVENA << "[3]" << BIJELA << " Izlaz\n";
 
     int option;
     std::cin >> option;

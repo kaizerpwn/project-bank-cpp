@@ -24,19 +24,19 @@ void UserDashboardForm()
 
         std::cout << std::endl;
 
-        printf("" CRVENA "BANKA >>" BIJELA " Dobrodosli %s, izaberite opciju koju zelite.\n", currentUser.GetFullName().c_str());
-        printf("" CRVENA "[1]" BIJELA " Stanje računa\n");
-        printf("" CRVENA "[2]" BIJELA " Prethodne transakcije\n");
-        printf("" CRVENA "[3]" BIJELA " Nova transakcija\n");
-        printf("" CRVENA "[4]" BIJELA " Podigni kredit\n");
+        std::cout << CRVENA << "BANKA >>" << BIJELA << " Dobrodosli " << currentUser.GetFullName() << ", izaberite opciju koju zelite.\n";
+        std::cout << CRVENA << "[1]" << BIJELA << " Stanje računa\n";
+        std::cout << CRVENA << "[2]" << BIJELA << " Prethodne transakcije\n";
+        std::cout << CRVENA << "[3]" << BIJELA << " Nova transakcija\n";
+        std::cout << CRVENA << "[4]" << BIJELA << " Podigni kredit\n";
         if (currentUser.WorkData.GetWorkerPosition() == "Banker")
         {
-            printf("" CRVENA "[5]" BIJELA " Pregled svih transakcija (Samo zaposleni)\n");
-            printf("" CRVENA "[6]" BIJELA " Pregled svih korisnika (Samo zaposleni)\n");
-            printf("" CRVENA "[7]" BIJELA " Uredi korisnika (Samo zaposleni)\n");
-            printf("" CRVENA "[8]" BIJELA " Obriši korisnika (Samo zaposleni)\n\n");
+            std::cout << CRVENA << "[5]" << BIJELA << " Pregled svih transakcija (Samo zaposleni)\n";
+            std::cout << CRVENA << "[6]" << BIJELA << " Pregled svih korisnika (Samo zaposleni)\n";
+            std::cout << CRVENA << "[7]" << BIJELA << " Uredi korisnika (Samo zaposleni)\n";
+            std::cout << CRVENA << "[8]" << BIJELA << " Obriši korisnika (Samo zaposleni)\n\n";
         }
-        printf("" CRVENA "[-1]" BIJELA " Odjavite se\n");
+        std::cout << CRVENA << "[-1]" BIJELA " Odjavite se\n";
 
         std::cin >> option;
 

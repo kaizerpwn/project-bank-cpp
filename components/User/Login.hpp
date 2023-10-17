@@ -14,9 +14,9 @@ void LoginForm()
     ShowHeader();
 
     string email, password;
-    printf("" CRVENA "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n");
+    std::cout << CRVENA << "BANKA >>" BIJELA " Molimo Vas unesite Vas email za prijavu.\n";
     std::cin >> email;
-    printf("" CRVENA "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n");
+    std::cout << CRVENA << "BANKA >>" BIJELA " Sada unesite Vasu lozinku za prijavu.\n";
     std::cin >> password;
     Login(email, password);
 }
