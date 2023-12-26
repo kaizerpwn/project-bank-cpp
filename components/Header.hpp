@@ -20,7 +20,7 @@ void ShowHeader()
     printf(CRVENA " ███████ █████ ██    | ▓▓   \\▓▓    ▓▓ ▓▓  \\▓▓\\       ▓▓ ▓▓ ▓▓      \\▓▓    ▓▓\\▓▓    ▓▓  \\▓▓  ▓▓    " BIJELA "| ▓▓    ▓▓\\▓▓    ▓▓ ▓▓  | ▓▓ ▓▓  \\▓▓\\\\▓▓    ▓▓\n");
     printf(CRVENA "███  ███ ███  ███     \\▓▓    \\▓▓▓▓▓▓▓\\▓▓   \\▓▓\\▓▓▓▓▓▓▓ \\▓▓\\▓▓       \\▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓   \\▓▓▓▓      " BIJELA "\\▓▓▓▓▓▓▓  \\▓▓▓▓▓▓▓\\▓▓   \\▓▓\\▓▓   \\▓▓ \\▓▓▓▓▓▓▓\n");
     printf(CRVENA "█████     █ █████\n");
-    printf(CRVENA "████████ ████████                                                                                   Autor: " BIJELA "Ibrahim Okić\n");
+    printf(CRVENA "████████ ████████                                                                         Autori: " BIJELA "Asja Hadžić | Sabrina Bešlagić | Ibrahim Okić\n");
     printf(CRVENA " ███████ ███████ \n");
     printf(CRVENA "    ████ ████    \n");
     printf(CRVENA "      ██ ██      \n");
