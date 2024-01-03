@@ -27,6 +27,7 @@ void MainForm()
             LoginForm();
             break;
         case 2:
+            option = 1;
             RegisterForm();
             break;
         case 3:

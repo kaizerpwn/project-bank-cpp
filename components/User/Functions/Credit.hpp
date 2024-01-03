@@ -81,8 +81,9 @@ void RaiseCredit()
             User::SaveUsers(users);
 
             std::cout
-                << ZELENA "USPJEŠNO >>" BIJELA " Podigli ste kredit u iznosu od: " << ZUTA << credits[i] << " KM" << BIJELA << ", otplaćivati ćete ga narednih " << months[i] << " sa kamatnom stopom od " << calculateInterestRate(credits[i], 10, months[i]) << std::endl;
-            std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+                << ZELENA "USPJEŠNO >>" BIJELA " Podigli ste kredit u iznosu od: " << ZUTA << credits[i] << " KM" << BIJELA << ", otplaćivati ćete ga narednih " << months[i] << " sa kamatnom stopom od 10%" << std::endl;
+            std::cout
+                << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
 
             std::cin.get();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

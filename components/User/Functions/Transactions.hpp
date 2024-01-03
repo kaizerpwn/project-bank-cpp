@@ -57,16 +57,22 @@ void RecentTransactions(string position)
 void TransferMoney()
 {
     std::cout << CRVENA "BANKA >>" BIJELA " Unesite broj računa na koji želite prebaciti" << ZUTA << " novac" << std::endl;
-    std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+    std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " '-1' " << BIJELA << "za povratak u meni... " << std::endl;
     string accountNumber;
     std::cin >> accountNumber;
+
+    if (accountNumber == "-1")
+        return;
 
     if (!accountNumber.empty())
     {
         std::cout << CRVENA "BANKA >>" BIJELA " Unesite svotu novca koju želite prebaciti na račun " << ZUTA << accountNumber << std::endl;
-        std::cout << CRVENA "BANKA >>" BIJELA " Stisnite" << ZUTA << " 'ENTER' " << BIJELA << "za povratak u meni... " << std::endl;
+        std::cout << CRVENA "BANKA >>" BIJELA " Unesite" << ZUTA << " '-1' " << BIJELA << "za povratak u meni... " << std::endl;
         string amountToTransfer;
         std::cin >> amountToTransfer;
+
+        if (amountToTransfer == "-1")
+            return;
 
         // >> If user want to send money to his own wallet
         if (accountNumber == currentUser.GetAccountNumber())
